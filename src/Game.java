@@ -5,6 +5,7 @@ public class Game {
     public static void main(String[] args) {
         Random rnd = new Random();
         int counter = 0;
+        int lives = 10;
         int hiddenNumber = rnd.nextInt(100);
         Scanner sc = new Scanner(System.in);
 
@@ -13,10 +14,16 @@ public class Game {
             int guessedNumber = sc.nextInt();
             counter += 1;
 
+            if (lives == 0) {
+                System.out.println("Game over, LOSER");
+                break;
+            }
             if (guessedNumber < hiddenNumber) {
                 System.out.println("More!");
+                lives -= 1;
             } else if (guessedNumber > hiddenNumber) {
                 System.out.println("Less!");
+                lives -= 1;
             } else {
                 System.out.println("You guessed!!");
                 System.out.println("You attempts used:" + counter);
